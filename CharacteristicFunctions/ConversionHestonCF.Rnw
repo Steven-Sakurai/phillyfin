@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\setlength{\parindent}{0cm}
+\section{Time change and Heston}
+
+The diffusion time change model:
+
+\begin{align}
+dS=rS dt+\sigma S dW_\tau ^1 \\
+\tau=\int_0 ^t \bar{v} ds \\
+d\bar{v}=k(1-\bar{v})dt+\eta \sqrt{\bar{v}}dW_{t} ^2 \\
+dW^1 dW^2 = \rho dt
+\end{align}
+
+and the traditional Heston model:
+
+\begin{align}
+dS=rS dt+\sqrt{v} S dW_{t}^1 \\
+dv=a(b-v)dt+c \sqrt{v}dW_{t}^2 \\
+dW^1 dW^2 =\rho dt
+\end{align}
+
+are equivalent.  To get from the Heston to time change, use the following change of variables:
+
+\begin{align} 
+k=a \\
+\eta=\frac{c}{\sqrt{b}}\\
+\sigma=\sqrt{b}\\
+\bar{v}_0=\frac{v_0}{b}
+\end{align}
+
+\section{Time change and Black Scholes}
+
+The diffusion time change model reduces to the Black Scholes model if \(\bar{v}_0=1\) and \(\eta=0\). This can be demonstrated either through a convoluted and unenlightening application of l`hospital's rule on the moment generating function of a CIR process or, more simply, by solving the integral of a non-stochastic mean-reverting process:
+\[\int_0^T \bar{v}_s ds\]
+Where 
+\[d\bar{v}_s=k(1-\bar{v})dt\]
+Since there is no stochastic component, this is just an ODE with solution
+\[\bar{v}_t=e^{-kt}(\bar{v}_0-1)+1\]
+The characteristic function in the Black Scholes world is thus
+\[e^{-\psi \left(\frac{1-e^{-kT}}{k}(\bar{v}_0-1)+T\right)}\]
+When \(\bar{v}_0=1\), this becomes (as expected)
+\[e^{-\psi T}\]
+
+
+
+
+
+
+
+\end{document}
